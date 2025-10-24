@@ -1,4 +1,4 @@
-package com.kanionland.game.consumer;
+package com.kanionland.game.infrastructure;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,4 +1,4 @@
-package com.kanionland.game.consumer;
+package com.kanionland.game.infrastructure;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
