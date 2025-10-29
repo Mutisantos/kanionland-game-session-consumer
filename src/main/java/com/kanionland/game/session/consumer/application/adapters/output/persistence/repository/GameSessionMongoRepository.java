@@ -1,0 +1,11 @@
+package com.kanionland.game.session.consumer.application.adapters.output.persistence.repository;
+
+import com.kanionland.game.session.consumer.application.adapters.output.persistence.documents.GameSessionEntry;
+import java.util.UUID;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface GameSessionMongoRepository extends MongoRepository<GameSessionEntry, UUID> {
+
+}

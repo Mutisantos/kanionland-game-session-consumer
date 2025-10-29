@@ -1,8 +1,8 @@
 server:
-  port: 8090
+  port: 8100
 
 jwt:
-  secret: your-256-bit-secret
+  secret: ${JWT_SECRET}
 
 spring:
   activemq:
@@ -15,14 +15,21 @@ spring:
       enabled: true
       max-connections: 10
       idle-timeout: 30000
-  data:
-    mongodb.host: localhost
-    mongodb.port: 27017
-    mongodb.database: kanionland
-    mongodb.username: root
-    mongodb.password: secret
-    mongodb.authentication-database: admin
+    queue:
+      game-session: game-session-queue
+  config:
+    activate:
+      on-profile: local
+  security:
+    user:
+      name: user
+      password: localpass
 
 jms:
   queue:
     game-session: game-session-queue
+
+logging:
+  level:
+    org.springframework: DEBUG
+    com.kanionland: DEBUG

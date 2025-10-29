@@ -1,20 +1,25 @@
+networks:
+  kanionland-message-network:
+    external: true
+
 services:
-  activemq:
-    image: 'apache/activemq-classic:latest'
-    ports:
-      - '61616'
   mongodb:
     image: 'mongo:latest'
     environment:
-      - 'MONGO_INITDB_DATABASE=mydatabase'
+      - 'MONGO_INITDB_DATABASE=game-session'
       - 'MONGO_INITDB_ROOT_PASSWORD=secret'
       - 'MONGO_INITDB_ROOT_USERNAME=root'
     ports:
-      - '27017'
-  rabbitmq:
-    image: 'rabbitmq:latest'
-    environment:
-      - 'RABBITMQ_DEFAULT_PASS=secret'
-      - 'RABBITMQ_DEFAULT_USER=myuser'
-    ports:
-      - '5672'
+      - '27017:27017'
+#  game-session-consumer:
+#    build: .
+#    depends_on:
+#      - mongodb
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=dev
+#      - SPRING_ACTIVEMQ_BROKER_URL=tcp://activemq:61616
+#      - JMS_QUEUE_GAME_SESSION=game-session-queue
+#    networks:
+#      - kanionland-message-network
+#    ports:
+#      - "8100:8100"
