@@ -1,7 +1,8 @@
-package com.kanionland.game.session.consumer.application.adapters.output.persistence.documents;
+package com.kanionland.game.session.consumer.domain.model;
 
 import java.time.LocalDateTime;
 import java.util.Map;
+import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,9 +12,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class GameSessionEntry {
+public class GameSessionModel {
 
-  private String messageId;
+  private UUID sessionId;
   private String username;
   private String description;
   private String character;

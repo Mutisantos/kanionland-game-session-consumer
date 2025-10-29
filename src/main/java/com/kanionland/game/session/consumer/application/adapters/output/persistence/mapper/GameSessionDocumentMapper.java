@@ -1,6 +1,9 @@
 package com.kanionland.game.session.consumer.application.adapters.output.persistence.mapper;
 
+import com.kanionland.game.session.consumer.application.adapters.output.persistence.documents.GameSessionDocument;
 import com.kanionland.game.session.consumer.application.adapters.output.persistence.documents.GameSessionEntry;
+import com.kanionland.game.session.consumer.domain.model.GameSessionActionModel;
+import com.kanionland.game.session.consumer.domain.model.GameSessionModel;
 import com.kanionland.game.session.consumer.infrastructure.input.jms.GameSessionMessage;
 import org.mapstruct.Mapper;
 
@@ -9,6 +12,8 @@ public interface GameSessionDocumentMapper {
 
   GameSessionEntry toDocument(GameSessionMessage gameSession);
 
-  GameSessionMessage toDomain(GameSessionEntry gameSessionEntry);
+  GameSessionActionModel toDomain(GameSessionEntry gameSessionEntry);
+
+  GameSessionModel toSessionModel(GameSessionDocument document);
 
 }

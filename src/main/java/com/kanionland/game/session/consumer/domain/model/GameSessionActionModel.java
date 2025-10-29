@@ -1,4 +1,4 @@
-package com.kanionland.game.session.consumer.application.adapters.output.persistence.documents;
+package com.kanionland.game.session.consumer.domain.model;
 
 import java.time.LocalDateTime;
 import java.util.Map;
@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class GameSessionEntry {
+public class GameSessionActionModel {
 
   private String messageId;
   private String username;
