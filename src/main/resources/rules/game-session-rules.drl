@@ -1,0 +1,62 @@
+package com.kanionland.game.session.consumer.rules
+
+import com.kanionland.game.session.consumer.infrastructure.input.jms.GameSessionMessage
+import java.util.List
+import java.util.Map
+import java.lang.Math
+
+rule "Process DICE_ROLL action"
+    when
+        $message: GameSessionMessage(
+            actionType == "DICE_ROLL",
+            $actionDetails: actionDetails != null
+        )
+    then
+        System.out.println("Processing DICE_ROLL action...");
+
+        // Get the values from the message with proper type handling
+        Map<String, Object> fateRolls = (Map<String, Object>) $actionDetails.get("fateRollValues");
+        List<Object> fateRollValues = (List<Object>) fateRolls.get("fateRollValues");
+
+        System.out.println("Processing roll value results...");
+        int rollValue = 0;
+        Object rollValueObj = $actionDetails.get("rollValue");
+        if (rollValueObj instanceof Number) {
+            rollValue = ((Number) rollValueObj).intValue();
+        } else {
+            rollValue = Integer.parseInt(rollValueObj.toString());
+        }
+
+        System.out.println("Processing stat value results...");
+        int statValue = 0;
+        Object statValueObj = $actionDetails.get("statValue");
+        if (statValueObj instanceof Number) {
+            statValue = ((Number) statValueObj).intValue();
+        } else {
+            statValue = Integer.parseInt(statValueObj.toString());
+        }
+
+        System.out.println("Processing fate results...");
+        int fateResult = 0;
+        for (Object value : fateRollValues) {
+            if (value != null) {
+                if (value instanceof Number) {
+                    fateResult += ((Number) value).intValue();
+                } else {
+                    try {
+                        fateResult += Integer.parseInt(value.toString());
+                    } catch (NumberFormatException e) {
+                        System.err.println("Could not parse fate roll value: " + value);
+                    }
+                }
+            }
+        }
+
+        System.out.println("Processing final results...");
+        double totalResult = statValue + ((double)fateResult / 2) * rollValue;
+        int finalResult = (int) Math.floor(totalResult);
+
+        $actionDetails.put("totalResult", finalResult);
+
+        System.out.println("Processed DICE_ROLL. Total result: " + finalResult);
+end

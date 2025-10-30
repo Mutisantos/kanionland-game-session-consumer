@@ -145,6 +145,57 @@
       <artifactId>spring-boot-starter-activemq</artifactId>
       <groupId>org.springframework.boot</groupId>
     </dependency>
+
+    <!-- Drools Dependencies -->
+    <dependency>
+      <artifactId>drools-core</artifactId>
+      <groupId>org.drools</groupId>
+      <version>7.73.0.Final</version>
+    </dependency>
+    <dependency>
+      <artifactId>drools-compiler</artifactId>
+      <groupId>org.drools</groupId>
+      <version>7.73.0.Final</version>
+    </dependency>
+    <dependency>
+      <artifactId>drools-decisiontables</artifactId>
+      <groupId>org.drools</groupId>
+      <version>7.73.0.Final</version>
+    </dependency>
+    <dependency>
+      <artifactId>mvel2</artifactId>
+      <groupId>org.mvel</groupId>
+      <version>2.5.2.Final</version>
+    </dependency>
+    <dependency>
+      <artifactId>kie-api</artifactId>
+      <groupId>org.kie</groupId>
+      <version>7.73.0.Final</version>
+    </dependency>
+    <dependency>
+      <artifactId>kie-internal</artifactId>
+      <groupId>org.kie</groupId>
+      <version>7.73.0.Final</version>
+    </dependency>
+    <dependency>
+      <artifactId>kie-spring</artifactId>
+      <exclusions>
+        <exclusion>
+          <artifactId>spring-tx</artifactId>
+          <groupId>org.springframework</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>spring-beans</artifactId>
+          <groupId>org.springframework</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>spring-core</artifactId>
+          <groupId>org.springframework</groupId>
+        </exclusion>
+      </exclusions>
+      <groupId>org.kie</groupId>
+      <version>7.73.0.Final</version>
+    </dependency>
     <dependency>
       <artifactId>spring-boot-starter-actuator</artifactId>
       <groupId>org.springframework.boot</groupId>
